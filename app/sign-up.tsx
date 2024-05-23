@@ -81,13 +81,11 @@ const signUp = () => {
           </View>
 
           <TouchableOpacity
-            className={`"bg-red-600 h-12 rounded-xl items-center justify-center w-full my-5 ${
-              loading ? "opacity-50" : ""
-            }`}
+            className={`bg-red-600 h-12 rounded-xl items-center justify-center w-full my-5`}
             onPress={handleDaftar}
           >
             {loading ? (
-              <ActivityIndicator color={"white"} size={24} />
+              <ActivityIndicator color={"white"} size={30} />
             ) : (
               <Text className="text-white font-[poppinsSemiBold] text-base">
                 Daftar
