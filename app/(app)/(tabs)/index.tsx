@@ -3,18 +3,15 @@ import React from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { StatusBar } from "expo-status-bar";
 import { useAuth } from "@/context/authContext";
+import Header from "@/components/ui/home/Header";
 
 const Home = () => {
-  const { logout } = useAuth();
-
-  const handleLogout = async () => {
-    await logout();
-  };
+  const { user } = useAuth();
 
   return (
-    <SafeAreaView>
+    <SafeAreaView className="flex-1 bg-white">
       <StatusBar style="dark" />
-      <Text onPress={handleLogout}>Home</Text>
+      <Header />
     </SafeAreaView>
   );
 };

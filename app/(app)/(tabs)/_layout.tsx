@@ -21,6 +21,16 @@ const TabLayout = () => {
         }}
       />
       <Tabs.Screen
+        name="resep"
+        options={{
+          tabBarIcon: ({ color }) => (
+            <Feather name="list" size={20} color={color} />
+          ),
+          title: "Resep",
+          headerShown: false,
+        }}
+      />
+      <Tabs.Screen
         name="favorit"
         options={{
           tabBarIcon: ({ color }) => (
