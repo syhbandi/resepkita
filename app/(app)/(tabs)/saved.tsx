@@ -1,12 +1,12 @@
 import { View, Text } from "react-native";
 import React from "react";
 
-const resep = () => {
+const Saved = () => {
   return (
     <View>
-      <Text>resep</Text>
+      <Text>Saved</Text>
     </View>
   );
 };
 
-export default resep;
+export default Saved;

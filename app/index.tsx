@@ -5,16 +5,10 @@ import { ScrollView, Text, TouchableOpacity, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function Index() {
-  const auth = useAuth();
+  const { isAuthenticated } = useAuth();
   const router = useRouter();
 
-  if (auth.loading)
-    return (
-      <View>
-        <Text>Loading</Text>
-      </View>
-    );
-  if (auth.isAuthenticated) return <Redirect href={"/(app)"} />;
+  if (isAuthenticated) return <Redirect href={"/(app)"} />;
 
   return (
     <SafeAreaView className="flex-1 bg-white">
