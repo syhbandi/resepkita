@@ -10,7 +10,7 @@ const Header = () => {
       <View className="mb-5 flex-row items-center justify-between">
         <View>
           <Text className="font-[poppinsSemiBold] text-neutral-800 text-xl">
-            Hi, {user?.username?.split(" ")[0]}!
+            Hi, {user?.username?.split(" ")[0]}
           </Text>
           <Text className="font-[poppinsMedium] text-neutral-400">
             What do you want to cook today?
@@ -20,7 +20,7 @@ const Header = () => {
       <TouchableOpacity className="flex-row space-x-3 items-center border border-neutral-300 rounded-xl h-11 px-2">
         <Feather name="search" size={20} color={"gray"} />
         <Text className="font-[poppinsMedium] text-neutral-400">
-          Search recipe
+          Search recipes
         </Text>
       </TouchableOpacity>
     </View>
