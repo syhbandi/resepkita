@@ -4,14 +4,12 @@ import {
   TouchableOpacity,
   ScrollView,
   Image,
-  Touchable,
   ActivityIndicator,
   Linking,
 } from "react-native";
 import React, { useEffect, useState } from "react";
 import { Stack, useLocalSearchParams } from "expo-router";
 import { Entypo, Feather } from "@expo/vector-icons";
-import useIngredients from "@/hooks/useIngredients";
 import useFetch from "@/hooks/useFetch";
 import { MealType } from "@/share/types/meal";
 import getIngredients from "@/scripts/getIngredients";
