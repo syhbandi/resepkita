@@ -13,9 +13,9 @@ const MealCard = ({ meal, width }: { meal: MealType; width: number }) => {
 
   return (
     <View className="relative">
-      <TouchableOpacity className="absolute top-2 right-2 z-10 h-8 w-8 items-center justify-center rounded-full bg-white">
+      {/* <TouchableOpacity className="absolute top-2 right-2 z-10 h-8 w-8 items-center justify-center rounded-full bg-white">
         <Feather name="bookmark" size={16} color={"red"} />
-      </TouchableOpacity>
+      </TouchableOpacity> */}
       <TouchableOpacity onPress={handleMealPress} style={{ width }}>
         <Image
           source={{

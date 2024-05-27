@@ -4,7 +4,6 @@ import { StatusBar } from "expo-status-bar";
 
 import Header from "@/components/ui/home/Header";
 import Kategori from "@/components/ui/home/Kategori";
-
 import MealList from "@/components/ui/home/MealList";
 
 const Home = () => {

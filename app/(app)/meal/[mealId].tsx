@@ -9,10 +9,12 @@ import {
 } from "react-native";
 import React, { useEffect, useState } from "react";
 import { Stack, useLocalSearchParams } from "expo-router";
-import { Entypo, Feather } from "@expo/vector-icons";
+import { Entypo, Feather, Ionicons } from "@expo/vector-icons";
 import useFetch from "@/hooks/useFetch";
 import { MealType } from "@/share/types/meal";
 import getIngredients from "@/scripts/getIngredients";
+import { doc, onSnapshot, setDoc } from "firebase/firestore";
+import { db } from "@/firebaseConfig";
 
 type MealsType = {
   meals: MealType[];
@@ -26,6 +28,7 @@ const MealDetail = () => {
   const [more, setMore] = useState(false);
   const [meal, setMeal] = useState<MealType | null>(null);
   const [ingredients, setIngredients] = useState<any[] | null>(null);
+  const [bookmarked, setBookmarked] = useState(false);
 
   useEffect(() => {
     if (data) {
@@ -37,6 +40,29 @@ const MealDetail = () => {
   const handleOpenYT = () => {
     Linking.openURL(meal?.strYoutube!);
   };
+
+  const handleBookmark = async () => {
+    await setDoc(
+      doc(db, "bookmark", `${mealId}`),
+      {
+        bookmarked: !bookmarked,
+        ...data,
+      },
+      { merge: true }
+    );
+  };
+
+  useEffect(() => {
+    const unsub = onSnapshot(doc(db, "bookmark", `${mealId}`), (doc) => {
+      const data = doc.data();
+      if (data?.bookmarked) {
+        setBookmarked(true);
+      } else {
+        setBookmarked(false);
+      }
+    });
+    return unsub;
+  });
 
   return (
     <>
@@ -58,7 +84,7 @@ const MealDetail = () => {
       />
       {loading ? (
         <View className="flex-1 items-center justify-center bg-white">
-          <ActivityIndicator size={30} color={"red"} />
+          <ActivityIndicator size={"large"} color={"red"} />
         </View>
       ) : error ? (
         <View className="flex-1 items-center justify-center bg-white">
@@ -75,12 +101,16 @@ const MealDetail = () => {
                 resizeMode="cover"
                 className="w-full h-48 rounded-2xl"
               />
-              <View className="flex-row items-center justify-between mt-5">
-                <Text className="font-[poppinsSemiBold] text-xl text-neutral-800">
+              <View className="flex-row justify-between mt-5">
+                <Text className="font-[poppinsSemiBold] text-xl text-neutral-800 flex-1">
                   {meal?.strMeal}
                 </Text>
-                <TouchableOpacity>
-                  <Feather name="bookmark" size={20} color={"red"} />
+                <TouchableOpacity onPress={handleBookmark}>
+                  <Ionicons
+                    name={bookmarked ? "bookmark" : "bookmark-outline"}
+                    size={24}
+                    color={"red"}
+                  />
                 </TouchableOpacity>
               </View>
               <Text className="font-[poppins] text-neutral-400 mb-5">
