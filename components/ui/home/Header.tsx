@@ -2,9 +2,10 @@ import { View, Text, TouchableOpacity } from "react-native";
 import React from "react";
 import { useAuth } from "@/context/authContext";
 import { Feather } from "@expo/vector-icons";
+import { router } from "expo-router";
 
 const Header = () => {
-  const { user, loading } = useAuth();
+  const { user } = useAuth();
   return (
     <View className="px-5 my-5">
       <View className="mb-5 flex-row items-center justify-between">
@@ -17,7 +18,10 @@ const Header = () => {
           </Text>
         </View>
       </View>
-      <TouchableOpacity className="flex-row space-x-3 items-center border border-neutral-300 rounded-xl h-11 px-2">
+      <TouchableOpacity
+        className="flex-row space-x-3 items-center bg-neutral-100 border border-neutral-200 rounded-xl h-11 px-2"
+        onPress={() => router.push("/search")}
+      >
         <Feather name="search" size={20} color={"gray"} />
         <Text className="font-[poppinsMedium] text-neutral-400">
           Search recipes

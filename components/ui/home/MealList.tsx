@@ -27,10 +27,6 @@ const MealList = ({ categoryId }: { categoryId: string }) => {
     "/filter.php?c=" + categoryId
   );
 
-  useEffect(() => {
-    if (categoryId) refetch();
-  }, [categoryId]);
-
   if (loading) return <ActivityIndicator size={"large"} color={"red"} />;
   if (error)
     return (
