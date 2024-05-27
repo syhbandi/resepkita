@@ -1,5 +1,5 @@
 import { View, Text, ActivityIndicator } from "react-native";
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import useFetch from "@/hooks/useFetch";
 import { FlatList } from "react-native";
 import CategoryCard from "@/components/common/card/CategoryCard";
@@ -15,34 +15,67 @@ export type KategoriType = {
   strCategoryDescription: string;
 };
 
-const Kategori = () => {
+const Kategori = ({
+  categoryId,
+  setCategoryId,
+}: {
+  categoryId: string;
+  setCategoryId: React.Dispatch<React.SetStateAction<string>>;
+}) => {
   const { data, loading, error } = useFetch<KategorisType>("/categories.php");
+  const flatListRef = useRef<FlatList>(null);
+
+  const handleScrollToIndex = (index: number) => {
+    flatListRef.current?.scrollToIndex({
+      index,
+      animated: true,
+      viewOffset: 20,
+    });
+  };
+
+  useEffect(() => {
+    if (data?.categories.length) {
+      setCategoryId(data.categories[0].strCategory);
+    }
+  }, [data]);
+
+  if (loading)
+    return (
+      <View className="items-center justify-center h-20">
+        <ActivityIndicator size="large" color={"red"} />
+      </View>
+    );
+
+  if (error)
+    return (
+      <View className="items-center justify-center h-20">
+        <Text className="font-[poppinsMedium] text-red-600">
+          {error.message}
+        </Text>
+      </View>
+    );
 
   return (
-    <View>
-      <View className="flex-row px-5 items-center justify-between mb-3">
-        <Text className="text-base font-[poppinsSemiBold] text-neutral-800">
-          Category
-        </Text>
-        <Text className="font-[poppinsMedium] text-red-600">See more</Text>
-      </View>
-      {loading ? (
-        <View className="items-center justify-center h-20">
-          <ActivityIndicator size={30} color={"red"} />
-        </View>
-      ) : error ? (
-        <>
-          <Text>An error accured, try again </Text>
-        </>
-      ) : (
-        <FlatList
-          data={data?.categories}
-          horizontal
-          renderItem={({ item }) => <CategoryCard category={item} />}
-          keyExtractor={(item) => item.idCategory}
-          contentContainerStyle={{ columnGap: 10, paddingHorizontal: 20 }}
-        />
-      )}
+    <View className="mb-5">
+      <FlatList
+        ref={flatListRef}
+        data={data?.categories}
+        horizontal
+        renderItem={({ item, index }) => (
+          <CategoryCard
+            category={item}
+            categoryId={categoryId}
+            setCategoryId={setCategoryId}
+            index={index}
+            handleScrollToIndex={handleScrollToIndex}
+          />
+        )}
+        keyExtractor={(item) => item.idCategory}
+        contentContainerStyle={{
+          columnGap: 10,
+          paddingHorizontal: 20,
+        }}
+      />
     </View>
   );
 };

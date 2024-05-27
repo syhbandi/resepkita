@@ -41,7 +41,7 @@ const signUp = () => {
       <ScrollView showsVerticalScrollIndicator={false}>
         <View className="min-h-screen px-5 items-center justify-center">
           <Text className="text-3xl font-[poppinsSemiBold] text-neutral-800 mb-5">
-            Daftar
+            Sign Up
           </Text>
           <View className="h-11 flex-row bg-white border border-neutral-300 rounded-xl items-center px-3 mb-3 space-x-2">
             <Feather name="user" size={20} color={"gray"} />
@@ -88,17 +88,17 @@ const signUp = () => {
               <ActivityIndicator color={"white"} size={30} />
             ) : (
               <Text className="text-white font-[poppinsSemiBold] text-base">
-                Daftar
+                Sign Up
               </Text>
             )}
           </TouchableOpacity>
           <Text className="font-[poppins] text-neutral-800 text-center">
-            Sudah punya akun?{" "}
+            Already have an account?{" "}
             <Link
               href={"sign-in"}
               className="font-[poppinsSemiBold] text-red-600"
             >
-              Login
+              Sign In
             </Link>
           </Text>
         </View>

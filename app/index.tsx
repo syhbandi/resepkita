@@ -16,17 +16,18 @@ export default function Index() {
       <ScrollView showsVerticalScrollIndicator={false}>
         <View className="flex-1  items-center justify-center min-h-screen px-5">
           <Text className="text-3xl font-[poppinsSemiBold] text-center text-neutral-800">
-            Memasak seperti seorang Chef
+            Find Best Recipe
           </Text>
           <Text className="font-[poppins] text-center text-neutral-500 mt-3">
-            Jelajahi semua rasa di dunia dengan resep menakjubkan di dapur kamu
-            sendiri
+            Explore world-class recipes with just yout finger
           </Text>
           <TouchableOpacity
             className="mt-5 px-10 h-11 bg-red-600 items-center justify-center rounded-xl"
             onPress={() => router.replace("/sign-in")}
           >
-            <Text className="text-white font-[poppinsSemiBold]">Mulai</Text>
+            <Text className="text-white font-[poppinsSemiBold]">
+              Get Started
+            </Text>
           </TouchableOpacity>
         </View>
       </ScrollView>

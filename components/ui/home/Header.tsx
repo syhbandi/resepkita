@@ -6,7 +6,7 @@ import { Feather } from "@expo/vector-icons";
 const Header = () => {
   const { user, loading } = useAuth();
   return (
-    <View className="my-5 px-5">
+    <View className="px-5 my-5">
       <View className="mb-5 flex-row items-center justify-between">
         <View>
           <Text className="font-[poppinsSemiBold] text-neutral-800 text-xl">

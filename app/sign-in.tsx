@@ -37,7 +37,7 @@ const signIn = () => {
       <ScrollView showsVerticalScrollIndicator={false}>
         <View className="min-h-screen px-5 items-center justify-center">
           <Text className="text-3xl font-[poppinsSemiBold] text-neutral-800 mb-5">
-            Login
+            Sign In
           </Text>
           <View className="h-11 flex-row bg-white border border-neutral-300 rounded-xl items-center px-3 mb-3 space-x-2">
             <Feather name="mail" size={20} color={"gray"} />
@@ -68,7 +68,7 @@ const signIn = () => {
           </View>
           <TouchableOpacity className="self-end my-3">
             <Text className="font-[poppins] text-neutral-600">
-              Lupa Password?
+              Forgot Password?
             </Text>
           </TouchableOpacity>
           <TouchableOpacity
@@ -79,17 +79,17 @@ const signIn = () => {
               <ActivityIndicator size={30} color={"white"} />
             ) : (
               <Text className="text-white font-[poppinsSemiBold] text-base">
-                Login
+                Sign In
               </Text>
             )}
           </TouchableOpacity>
           <Text className="font-[poppins] text-neutral-800 text-center">
-            Belum punya akun?{" "}
+            Dont have an account yet?{" "}
             <Link
               href={"sign-up"}
               className="font-[poppinsSemiBold] text-red-600"
             >
-              Daftar
+              Sign Up
             </Link>
           </Text>
         </View>
