@@ -1,6 +1,6 @@
 import React from "react";
 import { Tabs } from "expo-router";
-import { Feather, MaterialCommunityIcons } from "@expo/vector-icons";
+import { Feather } from "@expo/vector-icons";
 
 const TabLayout = () => {
   return (
@@ -21,16 +21,13 @@ const TabLayout = () => {
         }}
       />
       <Tabs.Screen
-        name="category"
+        name="search"
         options={{
           tabBarIcon: ({ color }) => (
-            <MaterialCommunityIcons
-              name="shape-outline"
-              size={20}
-              color={color}
-            />
+            <Feather name="search" size={20} color={color} />
           ),
-          title: "Category",
+          title: "Search",
+          headerShown: false,
         }}
       />
       <Tabs.Screen

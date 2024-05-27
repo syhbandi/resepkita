@@ -1,12 +1,12 @@
 import { View, Text } from "react-native";
 import React from "react";
 
-const Category = () => {
+const Search = () => {
   return (
     <View>
-      <Text>Category</Text>
+      <Text>Search</Text>
     </View>
   );
 };
 
-export default Category;
+export default Search;
