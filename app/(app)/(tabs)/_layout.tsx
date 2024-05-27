@@ -27,7 +27,6 @@ const TabLayout = () => {
             <Feather name="search" size={20} color={color} />
           ),
           title: "Search",
-          headerShown: false,
         }}
       />
       <Tabs.Screen

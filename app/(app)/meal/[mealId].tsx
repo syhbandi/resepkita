@@ -13,7 +13,7 @@ import { Entypo, Feather, Ionicons } from "@expo/vector-icons";
 import useFetch from "@/hooks/useFetch";
 import { MealType } from "@/share/types/meal";
 import getIngredients from "@/scripts/getIngredients";
-import { doc, onSnapshot, setDoc } from "firebase/firestore";
+import { Timestamp, doc, onSnapshot, setDoc } from "firebase/firestore";
 import { db } from "@/firebaseConfig";
 
 type MealsType = {
@@ -46,7 +46,8 @@ const MealDetail = () => {
       doc(db, "bookmark", `${mealId}`),
       {
         bookmarked: !bookmarked,
-        ...data,
+        meal,
+        dateAdd: Timestamp.fromDate(new Date()),
       },
       { merge: true }
     );
@@ -62,7 +63,7 @@ const MealDetail = () => {
       }
     });
     return unsub;
-  });
+  }, []);
 
   return (
     <>
