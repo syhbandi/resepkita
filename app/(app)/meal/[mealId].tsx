@@ -166,14 +166,16 @@ const MealDetail = () => {
               </View>
             </View>
           </ScrollView>
-          <TouchableOpacity
-            className="mx-5 mt-3 rounded-2xl bg-red-600 py-3 items-center justify-center"
-            onPress={handleOpenYT}
-          >
-            <Text className="font-[poppinsMedium] text-white">
-              Watch Youtube
-            </Text>
-          </TouchableOpacity>
+          {meal?.strYoutube && (
+            <TouchableOpacity
+              className="mx-5 mt-3 rounded-2xl bg-red-600 py-3 items-center justify-center"
+              onPress={handleOpenYT}
+            >
+              <Text className="font-[poppinsMedium] text-white">
+                Watch Youtube
+              </Text>
+            </TouchableOpacity>
+          )}
         </View>
       )}
     </>

@@ -63,8 +63,6 @@ const Saved = () => {
     return unsubscribe;
   }, []);
 
-  console.log(recipes);
-
   if (loading)
     return (
       <View className="flex-1 bg-white items-center justify-center">

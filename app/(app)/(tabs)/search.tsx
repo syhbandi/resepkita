@@ -29,34 +29,10 @@ const itemWidth =
 
 const Search = () => {
   const [name, setName] = useState("");
-  const [debouncedName] = useDebounce(name, 1000);
+  const [debouncedName] = useDebounce(name, 2000);
   const { data, loading, error } = useFetch<MealsType>(
     "/search.php?s=" + debouncedName
   );
-
-  if (loading)
-    return (
-      <View className="flex-1 bg-white items-center justify-center">
-        <ActivityIndicator size={"large"} color={"red"} />
-      </View>
-    );
-
-  if (error)
-    return (
-      <View className="flex-1 bg-white items-center justify-center">
-        <Text className="font-[poppinsMedium] text-red-600">
-          An error accured, please try again{" "}
-        </Text>
-      </View>
-    );
-  if (!data?.meals)
-    return (
-      <View className="flex-1 bg-white items-center justify-center">
-        <Text className="font-[poppinsMedium] text-neutral-600">
-          We got nothing here, try another food
-        </Text>
-      </View>
-    );
 
   return (
     <View className="flex-1 bg-white">
@@ -79,14 +55,35 @@ const Search = () => {
           ),
         }}
       />
-      <FlatList
-        data={data?.meals}
-        keyExtractor={(item) => item.idMeal.toString()}
-        renderItem={({ item }) => <MealCard meal={item} width={itemWidth} />}
-        numColumns={numColumns}
-        columnWrapperStyle={styles.columnWrapper}
-        contentContainerStyle={styles.container}
-      />
+      {loading ? (
+        <View className="flex-1 bg-white items-center justify-center">
+          <ActivityIndicator size={"large"} color={"red"} />
+        </View>
+      ) : error ? (
+        <View className="flex-1 bg-white items-center justify-center">
+          <Text className="font-[poppinsMedium] text-red-600 text-2xl">
+            Oops!
+          </Text>
+          <Text className="font-[poppins] text-neutral-600">
+            An error accoured, please try again
+          </Text>
+        </View>
+      ) : data?.meals ? (
+        <FlatList
+          data={data?.meals}
+          keyExtractor={(item) => item.idMeal.toString()}
+          renderItem={({ item }) => <MealCard meal={item} width={itemWidth} />}
+          numColumns={numColumns}
+          columnWrapperStyle={styles.columnWrapper}
+          contentContainerStyle={styles.container}
+        />
+      ) : (
+        <View className="flex-1 bg-white items-center justify-center">
+          <Text className="font-[poppinsMedium] text-neutral-600">
+            We got nothing here, try another food
+          </Text>
+        </View>
+      )}
     </View>
   );
 };
